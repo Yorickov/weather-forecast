@@ -1,9 +1,13 @@
+require 'rubocop/rake_task'
 require 'rake/testtask'
 
-Rake::TestTask.new do |t|
+RuboCop::RakeTask.new(:lint) do |t|
+  t.options = ['--display-cop-names']
+end
+
+Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
   t.test_files = FileList['test/**/test_*.rb']
-  t.verbose = true
 end
 
 desc 'run program'

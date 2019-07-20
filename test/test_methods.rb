@@ -6,7 +6,7 @@ require 'bundler/setup'
 
 require 'nokogiri'
 
-class Test < Minitest::Test
+class TestMethods < Minitest::Test
   def setup
     @html = '<div class="bordered">
     <select name="country_list" id="country_list" size="12" multiple="" class="font-smaller">
