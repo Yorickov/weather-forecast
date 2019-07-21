@@ -12,5 +12,5 @@ end
 
 desc 'run program'
 task :start do
-  ruby 'main.rb'
+  ruby 'weather_forecast.rb'
 end

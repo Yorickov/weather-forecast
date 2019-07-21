@@ -1,12 +1,8 @@
 require 'minitest/autorun'
-require 'metods'
-
-require 'rubygems'
-require 'bundler/setup'
-
 require 'nokogiri'
+require 'finder'
 
-class TestMethods < Minitest::Test
+class TestFinder < Minitest::Test
   def setup
     @html = '<div class="bordered">
     <select name="country_list" id="country_list" size="12" multiple="" class="font-smaller">
@@ -15,10 +11,10 @@ class TestMethods < Minitest::Test
       <option value="28">Япония</option>
       </select>
     </div>'
-    @country_name = 'Япония'
+    @finder = Finder.new(%w[Япония Токио])
   end
 
   def test_find_country_id
-    assert_equal('28', find_country_id(@html, @country_name))
+    assert_equal('28', @finder.find_country_id(@html))
   end
 end
