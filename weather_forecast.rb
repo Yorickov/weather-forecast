@@ -7,18 +7,18 @@ require 'json'
 require 'nokogiri'
 require 'rexml/document'
 
-require './lib/forecast.rb'
-require './lib/finder.rb'
-require './lib/printer.rb'
+require_relative 'lib/forecast.rb'
+require_relative 'lib/parser.rb'
+require_relative 'lib/printer.rb'
 
-puts 'Enter "Country,City"'
+puts 'Enter in format: "Country,City"'
 
-finder = Finder.create
+parser = Parser.create
 
 service_link = 'https://www.meteoservice.ru/content/export'
 country_link = 'https://www.meteoservice.ru/location/cities?country_id='
 city_link = 'https://xml.meteoservice.ru/export/gismeteo/point/'
 
-finder.get_xml_data(service_link, country_link, city_link)
+parser.process_xml(service_link, country_link, city_link)
 
-Printer.print_result(finder)
+Printer.print_result(parser)

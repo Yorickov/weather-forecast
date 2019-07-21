@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'nokogiri'
-require 'finder'
+require 'parser'
 
 class TestFinder < Minitest::Test
   def setup
@@ -11,10 +11,10 @@ class TestFinder < Minitest::Test
       <option value="28">Япония</option>
       </select>
     </div>'
-    @finder = Finder.new(%w[Япония Токио])
+    @parser = Parser.new(%w[Япония Токио])
   end
 
   def test_find_country_id
-    assert_equal('28', @finder.find_country_id(@html))
+    assert_equal('28', @parser.find_country_id(@html))
   end
 end

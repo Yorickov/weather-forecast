@@ -1,13 +1,13 @@
 class Printer
-  def self.print_result(finder)
+  def self.print_result(parser)
     puts
     puts 'Предоставлено Meteoservice.ru - https://www.meteoservice.ru'
     puts
-    puts finder.city_name
+    puts parser.city_name
     puts
 
-    finder.forecast_nodes.each do |node|
-      puts Forecast.from_xml(node)
+    parser.forecast_nodes.each do |node|
+      puts Forecast.create(node)
       puts
     end
   end

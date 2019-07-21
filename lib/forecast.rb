@@ -16,7 +16,7 @@ class Forecast
   end
 
   # rubocop:disable Metrics/AbcSize
-  def self.from_xml(node)
+  def self.create(node)
     day = node.attributes['day']
     month = node.attributes['month']
     year = node.attributes['year']
@@ -34,13 +34,6 @@ class Forecast
   end
   # rubocop:enable Metrics/AbcSize
 
-  def to_s
-    "#{@date.strftime('%d.%m.%Y')}, #{@time_of_day}\n" \
-    "#{temperature_range_string}, ветер #{@max_wind} м/с, " \
-    "#{CLOUDINESS[@cloudiness.to_i]}\n" \
-    "Влажность: #{@max_relwet}%. Давление: #{@max_pressure} мм рт.ст"
-  end
-
   def temperature_range_string
     output = ''
     output << '+' if @temperature_min.positive?
@@ -48,5 +41,12 @@ class Forecast
     output << '+' if @temperature_max.positive?
     output << @temperature_max.to_s
     output
+  end
+
+  def to_s
+    "#{@date.strftime('%d.%m.%Y')}, #{@time_of_day}\n" \
+    "#{temperature_range_string}, ветер #{@max_wind} м/с, " \
+    "#{CLOUDINESS[@cloudiness.to_i]}\n" \
+    "Влажность: #{@max_relwet}%. Давление: #{@max_pressure} мм рт.ст"
   end
 end

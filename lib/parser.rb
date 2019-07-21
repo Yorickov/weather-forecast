@@ -1,11 +1,10 @@
-class Finder
+class Parser
   attr_reader :country_name, :city_name, :forecast_nodes
 
   DEFAULT_CITY = 'Украина,Киев'.freeze
 
   def initialize(params)
     @country_name, @city_name = params
-    @forecast_nodes = ''
   end
 
   def self.create
@@ -45,7 +44,7 @@ class Finder
   end
 
   # rubocop:disable Metrics/AbcSize
-  def get_xml_data(service_link, country_link, city_link)
+  def process_xml(service_link, country_link, city_link)
     res_html = Net::HTTP.get_response(URI.parse(service_link))
     country_id = find_country_id(res_html.body)
     return puts 'No such a country' unless country_id
